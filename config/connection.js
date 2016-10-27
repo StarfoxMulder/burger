@@ -9,3 +9,9 @@ var connection = mysql.createConnection({
 });
 
 module.exports = connection;
+
+
+//////////////
+/*  Once finished with functionality,
+	the following is for the jawsDB setup
+*/

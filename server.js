@@ -1,7 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
-var connection = require('connection.js');
+var connection = require('./config/connection.js');
 
 var app = express();
 
@@ -41,8 +41,12 @@ app.listen(port, function () {
 // start of trial layout for using orm imports
 var orm = require('./config/orm.js');
 
-orm.selectALL();
+//displaying all 'undevoured' orders
+app.get('/', orm.selectAll('burgers', 'devoured', 0));
 
-orm.insertOne();
+//displaying all 'devoured' orders
+orm.selectAll('burgers', 'devoured', 1);
 
-orm.updateOne();
+// orm.insertOne();
+
+// orm.updateOne();
