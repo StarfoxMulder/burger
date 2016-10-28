@@ -66,14 +66,23 @@ var orm = {
 			if(err) throw err;
 			cb(result)
 		});
-	}
+	},
 // 'insertOne()'
 	insertOne: function (tableInput, col, valOfCol, cb) {
-		
-	}
+
+		connection.query('INSERT INTO burgers (burger_name) VALUES (?)', valOfCol, function(err, res){
+			if(err) throw err;
+			cb(res);
+		});
+	},
 
 // 'updateOne()'
-
+	updateOne: function (tableInput, condition, status, cb) {
+		connection.query('UPDATE burgers (id, devoured) VALUES (?, ?)', [condition, 1], function(err, res){
+			if(err) throw err;
+			cb(res);
+		});
+	}
 };
 
 module.exports = orm;
