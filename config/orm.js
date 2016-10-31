@@ -1,23 +1,68 @@
 var connection = require('./connection.js');
 
-var orm = {
+//////// ORM Attempt Two /////////
 
-// These are the methods to retrieve and store data in SQL database.
-// 'selectALL()'
-	displayAll: function(tableInput, col, valOfCol) {
-		var queryString = 'SELECT * FROM '+tableInput+' WHERE '+col+' =?';
-		connection.query(queryString, [valOfCol], function(err, res) {
-			if(err) throw err;
-			res.render('index', {burgers : res});
-		});
+function objToSql(ob) {
+	var arr = [];
+
+	for (var key in ob) {
+		if (ob.hasOwnProperty(key)) {
+			arr.push(key + '=' + ob[key]);
+		}
 	}
-// 'insertOne()'
+	return arr.toString();
+};
 
-// 'updateOne()'
+var orm = {
+// These are the methods to retrieve and store data in SQL database.
+	selectAll: function (tableInput, cb) {
+		var queryString = 'SELECT * FROM '+tableInput+';';
 
+		connection.query(queryString, function(err, res) {
+			if(err) throw err;
+			cb(result)
+		});
+	},
+
+	insertOne: function (tableInput, col, valOfCol, cb) {
+		var burgCol = col.toString();
+
+		var queryString = 'INSERT INTO burgers '+ burgCol;
+		queryString = queryString + ' VALUES (?)';
+
+		connection.query(queryString, burgVal, function(err, res){
+			if(err) throw err;
+			cb(res);
+		});
+	},
+
+	updateOne: function (tableInput, condition, objVals, cb) {
+		var queryString = 'UPDATE burgers SET ';
+		queryString = queryString + objToSql(objVals);
+		queryString = queryString +' WHERE '+connection;
+		console.log(queryString);
+
+		connection.query(queryString, function(err, res){
+			if(err) throw err;
+			cb(res);
+		});
+	},
+
+	deleteOne: function (tableInput, condition, cb) {
+    var queryString = 'DELETE FROM ' + tableInput;
+    queryString = queryString + ' WHERE ';
+    queryString = queryString + condition;
+
+    console.log(queryString);
+    connection.query(queryString, function (err, result) {
+      if (err) throw err;
+      cb(result);
+    });
+  }
 };
 
 module.exports = orm;
+
 
 // app.get('/', function(req, res){
 // 	connection.query('SELECT * FROM quotes;', function(err, data){
@@ -54,35 +99,3 @@ module.exports = orm;
 // 		res.redirect('/');
 // 	});
 // });
-
-//////// ORM Attempt Two /////////
-var connection = require('../config/connection.js');
-
-var orm = {
-// These are the methods to retrieve and store data in SQL database.
-	selectAll: function (tableInput, col, valOfCol, cb) {
-		var queryString = 'SELECT * FROM '+tableInput+' WHERE '+col+' =?';
-		connection.query(queryString, [valOfCol], function(err, res) {
-			if(err) throw err;
-			cb(result)
-		});
-	},
-// 'insertOne()'
-	insertOne: function (tableInput, col, valOfCol, cb) {
-
-		connection.query('INSERT INTO burgers (burger_name) VALUES (?)', valOfCol, function(err, res){
-			if(err) throw err;
-			cb(res);
-		});
-	},
-
-// 'updateOne()'
-	updateOne: function (tableInput, condition, status, cb) {
-		connection.query('UPDATE burgers (id, devoured) VALUES (?, ?)', [condition, 1], function(err, res){
-			if(err) throw err;
-			cb(res);
-		});
-	}
-};
-
-module.exports = orm;

@@ -1,7 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
-var connection = require('./config/connection.js');
 
 var app = express();
 
@@ -21,32 +20,11 @@ app.engine('handlebars', exphbs({
 }));
 app.set('view engine', 'handlebars');
 
-
-//mysql connection would go here
-
-connection.connect(function (err) {
-	if (err) {
-		console.error('error connecting: ' + err.stack);
-		return;
-	}
-	console.log('connected as id ' + connection.threadId);
-});
+var router = require('./controllers/burgers_controller.js');
+app.use('/', router);
 
 
 var port = 3000;
 app.listen(port, function () {
 	console.log('Listening on PORT ' + port);
 });
-
-// start of trial layout for using orm imports
-var orm = require('./config/orm.js');
-
-//displaying all 'undevoured' orders
-app.get('/', orm.selectAll('burgers', 'devoured', 0));
-
-//displaying all 'devoured' orders
-orm.selectAll('burgers', 'devoured', 1);
-
-// orm.insertOne();
-
-// orm.updateOne();
