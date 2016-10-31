@@ -7,7 +7,8 @@ router.get('/', function (req, res) {
 });
 
 router.get('/burgers', function (req, res) {
-  burger.selectall(function (data) {
+
+  burger.selectAll(function (data) {
     var hbsObject = { burgers: data };
     console.log(hbsObject);
     res.render('index', hbsObject);
@@ -28,7 +29,7 @@ router.put('/burgers/updateOne/:id', function (req, res) {
   });
 });
 
-router.delete('/burgers/delete/:id', function (req, res) {
+router.delete('/burgers/deleteOne/:id', function (req, res) {
   var condition = 'id = '+req.params.id;
 
   burger.delete(condition, function() {
