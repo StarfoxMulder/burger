@@ -15,10 +15,10 @@ function objToSql(ob) {
 
 function printQuestionMarks(num) {
   var arr = [];
- for (var i = 0; i < num; i++) {
-    arr.push('?');
-  }
-  return arr.toString();
+	for (var i = 0; i < num; i++) {
+		arr.push('?');
+	}
+	return arr.toString();
 };
 
 var orm = {
@@ -49,13 +49,14 @@ var orm = {
 	},
 
 	updateOne: function (tableInput, condition, objVals, cb) {
-		var queryString = 'UPDATE burgers SET ';
+		var queryString = 'UPDATE '+tableInput+' SET ';
+
 		queryString = queryString + objToSql(objVals);
 		queryString = queryString +' WHERE '+condition;
 		console.log(queryString);
 
 		connection.query(queryString, function (err, res){
-			if(err) throw err;
+			if (err) throw err;
 			cb(res);
 		});
 	},
