@@ -16,7 +16,7 @@ router.get('/burgers', function (req, res) {
 });
 
 router.post('/burgers/insertOne', function (req, res) {
-  burger.insertOne(['burger_name', 'devoured'], [req.body.burger_name, 0], function () {
+  burger.insertOne(['burger_name', 'devoured'], [req.body.burger_name, false], function () {
     res.redirect('/burgers');
   });
 });
@@ -30,9 +30,9 @@ router.put('/burgers/updateOne/:id', function (req, res) {
 });
 
 router.delete('/burgers/deleteOne/:id', function (req, res) {
-  var condition = 'id = '+req.params.id;
+  var condition = 'id = ' + req.params.id;
 
-  burger.delete(condition, function() {
+  burger.deleteOne(condition, function() {
     res.redirect('/burgers');
   });
 });

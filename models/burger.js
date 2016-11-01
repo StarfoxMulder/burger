@@ -8,20 +8,20 @@ var burger = {
     });
   },
 
-  insertOne: function (cols, vals, cb) {
-    orm.insertOne(tableInput, cols, vals, function (res) {
+  insertOne: function (cols, valOfCols, cb) {
+    orm.insertOne(tableInput, cols, valOfCols, function (res) {
       cb(res);
     });
   },
   
-  updateOne: function (objVals, condition, cb) {
-    orm.updateOne(tableInput, objVals, condition, function (res) {
+  updateOne: function (condition, objVals, cb) {
+    orm.updateOne(tableInput, condition, objVals, function (res) {
       cb(res);
     });
   },
 
-  delete: function (condition, cb) {
-    orm.delete(tableInput, condition, function(res){
+  deleteOne: function (condition, cb) {
+    orm.deleteOne(tableInput, condition, function(res){
       cb(res);
     });
   }
