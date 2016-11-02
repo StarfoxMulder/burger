@@ -1,7 +1,51 @@
+body {
+	background-color: #363636;
+}
+
 header {
-	background-image: url('../img/SDbanner.jpg');
-	background-size: cover;
-	background-repeat: no-repeat;
+	color: white;
+	background-color: black;
+	font-family: 'Limelight', cursive;
+	font-size: 77px;
+	text-align: center;
+	font-weight: 800;
+	height: 150px;
+	border-bottom: 3px solid #45b9d9;
+	/*text-decoration: underline;*/
+}
+#undLine {
+	margin-top: -10%;
+
+}
+
+li {
+	margin: 5% 0;
+	border-bottom: 1px solid black;
+	padding-bottom: 2%;
+}
+
+button{
+	font-family: 'Jomhuria', cursive;
+	font-size: 24px;
+	border-radius: 10px;
+	background-color: #45b9d9;
+	border: 2px solid white;
+	letter-spacing: 2px;
+	margin-left: 5%;
+}
+
+
+.heading {
+	font-family: 'Limelight', cursive;
+	font-size: 30px;
+	text-align: center;
+	color: white;
+}
+.burgerType{
+	font-family: 'Sansita One', cursive;
+	font-size: 24px;
+	text-align: left;
+	color: white;
 }
 
 #orderCueDiv {

@@ -15,7 +15,11 @@
     "Schneider",
     "Deli",
     "Split",
-    "Hotdog"
+    "Hotdog",
+    "node.js",
+    "MySQL",
+    "ORM",
+    "Handlebars"
   ],
   "author": "Charles Jude Prestia",
   "license": "ISC",
