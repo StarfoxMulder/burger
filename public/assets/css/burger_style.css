@@ -21,7 +21,7 @@ header {
 li {
 	margin: 5% 0;
 	border-bottom: 1px solid black;
-	padding-bottom: 2%;
+	padding-bottom: 3%;
 }
 
 button{
@@ -40,6 +40,7 @@ button{
 	font-size: 30px;
 	text-align: center;
 	color: white;
+	text-decoration: underline;
 }
 .burgerType{
 	font-family: 'Sansita One', cursive;
