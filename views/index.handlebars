@@ -31,7 +31,7 @@
               <h2  class="heading" id="add">Add an Order</h2>
               <div class="form-group">
                   <form method="POST" action="burgers/insertOne" class="addOne text-center">
-                      <textarea id="textArea" type="text" name="burger_name" rows="4" cols="54"></textarea>
+                      <textarea id="textArea" type="text" name="burger_name" rows="4" cols="60"></textarea>
                       <button id="btnCreate"  type="submit">Submit</button>
                   </form>
               </div>
@@ -46,7 +46,7 @@
                   {{#if this.devoured}}
                     <li>
                       <p class="burgerType">{{this.burger_name}}</p>
-                      <form action="burgers/delete/{{this.id}}?_method=DELETE" method="POST">
+                      <form action="burgers/deleteOne/{{this.id}}?_method=DELETE" method="POST">
                         <button class="btnDevour" type="submit">Remove</button>
                       </form>
                     </li>

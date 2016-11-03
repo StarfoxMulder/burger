@@ -64,7 +64,8 @@ var orm = {
 
 	deleteOne: function (tableInput, condition, cb) {
 	    var queryString = 'DELETE FROM ' + tableInput;
-	    queryString = queryString + ' WHERE '+condition;
+	    queryString = queryString + ' WHERE ';
+	    queryString = queryString + condition;
 
 	    console.log(queryString);
 	    connection.query(queryString, function (err, res) {
@@ -75,40 +76,3 @@ var orm = {
 };
 
 module.exports = orm;
-
-
-// app.get('/', function(req, res){
-// 	connection.query('SELECT * FROM quotes;', function(err, data){
-// 		if(err) throw err;
-// 		res.render('index', {quotes : data});
-// 	});
-// });
-
-// app.delete('/delete', function(req, res) {
-// 	connection.query('DELETE FROM quotes WHERE id = ?', [req.body.id], function(err, data){
-// 		if(err) throw err;
-// 		res.redirect('/');
-// 	});
-// });
-
-// app.post('/create', function(req, res) {
-// 	connection.query('INSERT INTO quotes (author, quote) VALUES (?, ?)', [req.body.author, req.body.quote], function(err, data){
-// 		if(err) throw err;
-// 		res.redirect('/');
-// 	});
-// });
-
-// app.get('/quotes/:id', function(req, res) {
-// 	connection.query('SELECT * FROM quotes WHERE id = ?', [req.params.id], function(err, data){
-// 		if(err) throw err;
-// 		res.render('single_quote', data[0]);
-// 	});
-// });
-
-
-// app.post('/update/:id', function(req, res) {
-// 	connection.query('UPDATE quotes (author, quote, id) VALUES (?, ?, ?)', [req.body.author, req.body.quote, req.params.id], function(err, data){
-// 		if(err) throw err;
-// 		res.redirect('/');
-// 	});
-// });
